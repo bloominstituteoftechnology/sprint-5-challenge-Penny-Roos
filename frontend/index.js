@@ -61,7 +61,7 @@ section.appendChild(cardDiv)
 function buildLearnerCard(learner, mentors) {
   const card = document.createElement("div")
   card.classList.add("card")
-  const name = document.createElement("h3")
+  let name = document.createElement("h3")
   name.textContent = learner.fullName
   const email = document.createElement("div")
   email.textContent = learner.email
@@ -73,14 +73,37 @@ return card
   
 }
   learners.forEach(learner => {
-    const learnerCard = buildLearnerCard(learner, mentors)
-    cardDiv.appendChild(learnerCard)
+    const learnerCards = buildLearnerCard(learner, mentors)
+    cardDiv.appendChild(learnerCards)
+  })
+  const learnerCard = document.querySelectorAll(".card")
+    learnerCard.forEach(card => {
+      card.addEventListener("click", function() {
+        this.classList.remove("card");
+        this.classList.add("card selected");
+      });
+    }); 
+    
+  
+  
+  
+
+
+ 
+  
+
+
+
+ 
+
+ 
+    
     
     
  
 
 
-  })
+  
 
   const footer = document.querySelector('footer')
   const currentYear = new Date().getFullYear()
