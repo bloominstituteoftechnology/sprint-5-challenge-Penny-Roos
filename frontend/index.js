@@ -65,7 +65,7 @@ function buildLearnerCard(learner, mentors) {
   name.textContent = learner.fullName
   const email = document.createElement("div")
   email.textContent = learner.email
-  const lMentors = document.createElement("h3")
+  const lMentors = document.createElement("h4")
   lMentors.classList.add("closed")
   lMentors.textContent = `▶  Mentors`
   
@@ -83,11 +83,17 @@ return card
   const learnerCard = document.querySelectorAll(".card")
     learnerCard.forEach(card => {
       card.addEventListener("click", function() {
-         this.classList.remove("selected");
-        this.classList.add("card selected");
+        learnerCard.forEach(c => {
+         c.classList.remove("selected");
+      
                });
+              
+               this.classList.add("selected")
+              const nameHeading = document.querySelector("h3")
+              const learner = document.querySelector("learners")
+              nameHeading.textContent = `${learner.fullName} , ${learner.id}`
     }); 
-    
+  })
   
   
   
