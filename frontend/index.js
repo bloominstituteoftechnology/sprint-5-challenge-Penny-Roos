@@ -14,12 +14,15 @@ async function sprintChallenge5() { // Note the async keyword, in case you wish 
         })
       })
       result.push(learner)
+      console.log(learner.id)
     })
     return result
     } catch(err){
       console.log(err)
     }
+   
   }
+  
  
   
  
@@ -55,7 +58,7 @@ function buildLearnerCard(learner, mentors) {
   
   card.appendChild(name)
   card.appendChild(email)
-  card.appendChild(lMentors)l
+  card.appendChild(lMentors)
 return card
   
   
