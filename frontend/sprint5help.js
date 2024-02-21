@@ -40,46 +40,46 @@ async function sprintChallenge5() { // Note the async keyword, in case you wish 
     const learnerCards = buildLearnerCard(learner)
     cardDiv.appendChild(learnerCards)
   })
-  
+  document.querySelector(".info").textContent = "No learner is selected"
 
 
 
-  function buildLearnerCard(learner) {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    let name = document.createElement("h3");
-    name.textContent = learner.fullName; // Display learner's full name
-    const email = document.createElement("div");
-    email.textContent = learner.email;
-    const lMentors = document.createElement("h4");
-    lMentors.classList.add("closed");
-    lMentors.textContent = `Mentors`;
+
+  function buildLearnerCard(learner, mentors) {
+    const card = document.createElement("div")
+    card.classList.add("card")
+    let name = document.createElement("h3")
+    name.textContent = learner.fullName
+    const email = document.createElement("div")
+    email.textContent = learner.email
+    const lMentors = document.createElement("h4")
+    lMentors.classList.add("closed")
+    lMentors.textContent = `Mentors`
+      
+
+    card.appendChild(name)
+    card.appendChild(email)
+    card.appendChild(lMentors)
   
-    card.appendChild(name);
-    card.appendChild(email);
-    card.appendChild(lMentors);
-  
-    card.addEventListener("click", function (event) {
-      const infoSection = document.querySelector(".info");
-      infoSection.textContent = `The selected learner is ${learner.fullName}`;
-  
-      if (!card.classList.contains("selected")) {
-        name.textContent = `${learner.fullName}, ID: ${learner.id}`; // Include learner's ID in the heading
-        card.classList.add("selected");
-        lMentors.classList.replace("closed", "open");
-      } else {
-        name.textContent = learner.fullName; // Revert to displaying only the learner's full name
-        card.classList.remove("selected");
-        lMentors.classList.replace("open", "closed");
-      }
-      event.stopPropagation(); // Prevent event from bubbling up and closing other mentor lists
-    });
-  
-    return card;
+    return card
+
+
   }
-  
-  
 
+  const learnerCard = document.querySelectorAll(".card")
+  learnerCard.forEach(card => {
+    card.addEventListener("click", function () {
+      learnerCard.forEach(c => {
+        c.classList.remove("selected");
+
+      });
+
+      this.classList.add("selected")
+      const nameHeading = document.querySelector("h3")
+      const learner = document.querySelector("learners")
+      nameHeading.textContent = `${learner.fullName} , ${learner.id}`
+    });
+  })
 
 
 
